@@ -1,13 +1,13 @@
 # Challenge travel data
 
-## Goal
+## 1 Goal
 
 In this challenge, you are tasked to build a classifier to 
 predict the conversion likelihood of a user based on previous 
 search events, with emphasis on the feature engineering and 
 evaluation part.
 
-## Setup 
+## 2 Setup 
 
 ```shell script
 conda create -n ta python=3.7.7 -y
@@ -17,7 +17,7 @@ pip install -e .
 # python setup.py install 
 ```
 
-## Training
+## 3 Training
 - Create a file `.env` with the same environment variables as `.env.sample`:
     - `$GOOGLE_API_KEY`: needed only for the generation  of `data/iata_countries.csv`. 
     You can leave it empty.
@@ -54,7 +54,9 @@ pip install -e .
   shown [here](notebooks/Calibrate.ipynb) 
 
 
-## Discussion (feature generation)
+## 4 Discussion
+
+### 4.1 Discussion (feature generation)
   We have generated the following features for every user:
     Continuous variables:  
     - `date_from_month`: obtained from `date_from`     
@@ -91,7 +93,7 @@ pip install -e .
     origin or destination. Because of the high cardinality of this variable we have not used it.
 
 
-## Discussion (training)
+### 4.2 Discussion (training)
 
   - We use a LightGBM
   
@@ -111,7 +113,7 @@ pip install -e .
     function is proportional to `N/N_pos`. It follows that the recall tends to 1
     in the training and validation data sets.
 
-## Discussion (model calibration)
+### 4.3 Discussion (model calibration)
   - We face several problems:
     - From the high recall achieved during the model training we could assume that
       the model is willing to assign high scores to elements of the negative class.
@@ -126,7 +128,7 @@ pip install -e .
     before calibrating it.
     
 
-## Discussion (possible model updates)
+### 4.4 Discussion (possible model updates)
   - Elimination of features:
     - use the feature importance obtained from the lgb model (for example, use the 
     feature importance derived from the information gain) 
